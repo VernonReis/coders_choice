@@ -15,12 +15,21 @@
   </header>
   <main>
 
-      <form ng-submit='ctrl.addNewWrestler()'>
+      <form ng-submit='ctrl.addNewWrestler()' ng-if="!ctrl.isSelected">
           <input type="text" placeholder="Wrestler Name (Required)" ng-model="ctrl.newWrestlerForm.name" />
           <input type="text" placeholder="Wrestler Title (Optional)" ng-model="ctrl.newWrestlerForm.title" />
           <input type="url" placeholder="Image URL (Optional)" ng-model="ctrl.newWrestlerForm.img" />
           <input type="submit" />
       </form>
+
+      <form ng-submit='ctrl.updateWrestler()' ng-if="ctrl.isSelected">
+          <input type="text" placeholder="Wrestler Name (Required)" ng-model="ctrl.updateWrestlerForm.name" />
+          <input type="text" placeholder="Wrestler Title (Optional)" ng-model="ctrl.updateWrestlerForm.title" />
+          <input type="url" placeholder="Image URL (Optional)" ng-model="ctrl.updateWrestlerForm.img" />
+          <input type="hidden" ng-model="ctrl.updateWrestler._id" />
+          <input type="submit" />
+      </form>
+
       <h2>Wrestlers</h2>
       <div id="container">
 
