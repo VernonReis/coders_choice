@@ -7,4 +7,4 @@ const wrestlerSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('Wrestler', wrestlerShcema);
+module.exports = mongoose.model('Wrestler', wrestlerSchema);
