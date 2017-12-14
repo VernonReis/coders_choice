@@ -20,11 +20,11 @@ app.controller('MainController', ['$http', function ($http) {
 
     this.displayWrestler();
 
-    this.addWrestler = function () {
+    this.addNewWrestler = function () {
       $http({
         url: '/wrestlers',
         method: 'POST',
-        data: {this.newWrestlerForm}
+        data: this.newWrestlerForm
       }).then(response => {
         this.wrestlers.push(response.data);
         this.newWrestlerForm = {};
