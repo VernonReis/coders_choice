@@ -14,19 +14,30 @@
     </nav>
   </header>
   <main>
-    <h2>Wrestlers</h2>
-    <div id="container">
 
-        <div class="entry" ng-repeat="wrestler in ctrl.wrestlers">
+      <form ng-submit='ctrl.addNewWrestler()'>
+          <input type="text" placeholder="Wrestler Name (Required)" ng-model="ctrl.newWrestlerForm.name" />
+          <input type="text" placeholder="Wrestler Title (Optional)" ng-model="ctrl.newWrestlerForm.title" />
+          <input type="url" placeholder="Image URL (Optional)" ng-model="ctrl.newWrestlerForm.image" />
+          <input type="submit" />
+      </form>
+      <h2>Wrestlers</h2>
+      <div id="container">
 
-            <h2>{{wrestler.name}}</h2>
-            <h3>{{wrestler.title}}</h3>
-            <img class="entryImage" src="{{wrestler.img}}" />
-
-        </div>
 
 
-    </div>
+
+
+          <div class="entry" ng-repeat="wrestler in ctrl.wrestlers">
+
+              <h2>{{wrestler.name}}</h2>
+              <h3>{{wrestler.title}}</h3>
+              <img class="entryImage" src="{{wrestler.img}}" />
+
+          </div>
+
+
+      </div>
   </main>
 
 
