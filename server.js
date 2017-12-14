@@ -8,7 +8,7 @@ require('pretty-error').start();
 
 // CONFIG
 const PORT = process.env.PORT || 2080;
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/books_users_api'
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/wrestlers'
 
 // DB
 mongoose.connect(mongoURI, { useMongoClient: true });
