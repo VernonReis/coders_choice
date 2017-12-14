@@ -4,18 +4,20 @@ const app = angular.module('Wrestlers_App', []);
 
 app.controller('MainController', ['$http', function ($http) {
 
-  this.wrestlers = [];
+    this.wrestlers = [];
 
-  this.displayWrestler = () => {
-    $http({
-      url: '/wrestlers',
-      method: 'GET'
-    }).then(response => {
-      this.wrestlers = response.data;
-    }, error => {
-      console.log(error.message);
-    })
-  }
+    this.displayWrestler = function () {
+        $http({
+            url: '/wrestlers',
+            method: 'GET'
+        }).then(response => {
+            this.wrestlers = response.data;
+        }, error => {
+            console.log(error.message);
+        })
+    }
+
+    this.displayWrestler();
 
 
 

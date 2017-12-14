@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app='Wrestlers_App'>
 <head>
     <meta charset="utf-8">
@@ -15,8 +15,17 @@
   </header>
   <main>
     <h2>Wrestlers</h2>
-    <div class="">
-      <img src="{{ctrl.img}}" alt="">
+    <div id="container">
+
+        <div class="entry" ng-repeat="wrestler in ctrl.wrestlers">
+
+            <h2>{{wrestler.name}}</h2>
+            <h3>{{wrestler.title}}</h3>
+            <img class="entryImage" src="{{wrestler.img}}" />
+
+        </div>
+
+
     </div>
   </main>
 
