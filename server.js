@@ -21,8 +21,6 @@ mongoose.Promise = global.Promise;
 // CONTROLLERS
 const wrestlersController = require('./controllers/wrestlers');
 
-
-
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
