@@ -27,6 +27,10 @@ app.use(express.json());// returns middleware that only parses JSON
 
 app.use(express.static('public'));
 
+app.get('/', (req, res) => {
+    res.send("hello world");
+}); 
+
 app.listen(port, () => {
     console.log('=======================');
     console.log('Running on port ' + port);
