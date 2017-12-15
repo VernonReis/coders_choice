@@ -46,5 +46,9 @@ app.controller('MainController', ['$http', function ($http) {
       }).catch(err => console.log('Catch', err))
     }
 
+    this.selectWrestler = function (thisWrestler) {
+        this.isSelected = true;
+        this.updateWrestlerForm = thisWrestler;
+    }
 
 }]);
