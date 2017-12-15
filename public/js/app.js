@@ -1,12 +1,11 @@
 const app = angular.module('Wrestlers_App', []);
 
-
-
 app.controller('MainController', ['$http', function ($http) {
 
     this.wrestlers = [];
     this.newWrestlerForm = {};
     this.isSelected = false;
+    this.updateWrestlerForm = {};
 
     this.displayWrestler = function () {
         $http({
@@ -40,7 +39,8 @@ app.controller('MainController', ['$http', function ($http) {
         method: 'POST',
         data: this.updateWrestlerForm
       }).then(response => {
-        this.
+        this.wrestlers.push(response.data);
+        this.updateWrestlerForm = {};
       }, error => {
         console.log(error.message);
       }).catch(err => console.log('Catch', err))
