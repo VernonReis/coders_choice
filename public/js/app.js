@@ -21,29 +21,30 @@ app.controller('MainController', ['$http', function ($http) {
     this.displayWrestler();
 
     this.addNewWrestler = function () {
-      $http({
-        url: '/wrestlers',
-        method: 'POST',
-        data: this.newWrestlerForm
-      }).then(response => {
-        this.wrestlers.push(response.data);
-        this.newWrestlerForm = {};
-      }, error => {
-        console.log(error.message);
-      }).catch(err => console.log('Catch', err))
+        $http({
+            url: '/wrestlers',
+            method: 'POST',
+            data: this.newWrestlerForm
+        }).then(response => {
+            this.wrestlers.push(response.data);
+            this.newWrestlerForm = {};
+        }, error => {
+            console.log(error.message);
+        }).catch(err => console.log('Catch', err))
     }
 
     this.updateWrestler = function () {
-      $http({
-        url: '/wrestlers',
-        method: 'POST',
-        data: this.updateWrestlerForm
-      }).then(response => {
-        this.wrestlers.push(response.data);
-        this.updateWrestlerForm = {};
-      }, error => {
-        console.log(error.message);
-      }).catch(err => console.log('Catch', err))
+        $http({
+            url: '/wrestlers/' + this.updateWrestlerForm._id,
+            method: 'PUT',
+            data: this.updateWrestlerForm
+        }).then(response => {
+            this.updateWrestlerForm = {};
+            this.isSelected = false;
+        }, error => {
+            console.log(this.updateWrestlerForm);
+            console.log(error.message);
+        }).catch(err => console.log('Catch', err))
     }
 
     this.selectWrestler = function (thisWrestler) {
