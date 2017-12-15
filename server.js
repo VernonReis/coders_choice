@@ -1,34 +1,40 @@
-﻿const express = require('express'),
-    mongoose = require('mongoose'),
-    port = 3000 || process.env.PORT,
-    app = express(),
-    db = mongoose.connection;
+﻿// DEPENDENCIES
+const express = require('express');
+const session = require('express-session');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const app = express();
+require('pretty-error').start();
 
-mongoose.Promise = global.Promise;
-const mongoURI = 'mongodb://localhost/my_app';
+// CONFIG
+const PORT = process.env.PORT || 2080;
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/wrestlers'
 
-// Connect to Mongo
+// DB
 mongoose.connect(mongoURI, { useMongoClient: true });
+const db = mongoose.connection;
+db.on('error', (err) => console.log('Mongo error: ', err));
+db.on('connected', () => console.log('Mongo connected at: ', mongoURI));
+db.on('disconnected', () => console.log('Mongo disconnected'));
+mongoose.Promise = global.Promise;
 
-// Error / success
-db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
-db.on('connected', () => console.log('mongo connected: ', mongoURI));
-db.on('disconnected', () => console.log('mongo disconnected'));
+// CONTROLLERS
+const wrestlersController = require('./controllers/wrestlers');
 
-// open the connection to mongo
-db.on('open', () => {
-    console.log('Connection made!');
-});
-
-app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
-app.use(express.json());// returns middleware that only parses JSON
-
-
-
+// MIDDLEWARE
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(express.static('public'));
+app.use(morgan('dev'));
+app.use(session({
+    secret: 'WUBALUBADUBDUB',
+    resave: true,
+    saveUninitialized: false,
+    maxAge: 2592000000
+}));
+app.use('/wrestlers', wrestlersController);
 
-app.listen(port, () => {
-    console.log('=======================');
-    console.log('Running on port ' + port);
-    console.log('=======================');
-});
+
+
+// LISTEN
+app.listen(PORT, () => console.log('BOOKS API running on port: ', PORT));
