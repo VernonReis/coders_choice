@@ -6,6 +6,7 @@ app.controller('MainController', ['$http', function ($http) {
 
     this.wrestlers = [];
     this.newWrestlerForm = {};
+    this.isSelected = false;
 
     this.displayWrestler = function () {
         $http({
@@ -28,6 +29,18 @@ app.controller('MainController', ['$http', function ($http) {
       }).then(response => {
         this.wrestlers.push(response.data);
         this.newWrestlerForm = {};
+      }, error => {
+        console.log(error.message);
+      }).catch(err => console.log('Catch', err))
+    }
+
+    this.updateWrestler = function () {
+      $http({
+        url: '/wrestlers',
+        method: 'POST',
+        data: this.updateWrestlerForm
+      }).then(response => {
+        this.
       }, error => {
         console.log(error.message);
       }).catch(err => console.log('Catch', err))
