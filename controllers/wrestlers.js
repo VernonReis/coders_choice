@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const wrestler = await Wrestler.findByIdAndRemove(req.param.id);
+        const wrestler = await Wrestler.findByIdAndRemove(req.params.id);
         res.status(200).json(wrestler);
     } catch (err) {
         res.status(400).json({ err: err.message });
@@ -29,7 +29,7 @@ router.delete('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        const wrestler = await Wrestler.findByIdAndUpdate(req.param.id, req.body);
+        const wrestler = await Wrestler.findByIdAndUpdate(req.params.id, req.body);
         res.status(200).json(wrestler);
     } catch (err) {
         console.log(err.message);
