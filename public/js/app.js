@@ -47,6 +47,20 @@ app.controller('MainController', ['$http', function ($http) {
         }).catch(err => console.log('Catch', err))
     }
 
+    this.deleteWrestler = function (id) {
+        $http({
+            url: '/wrestlers/' + id,
+            method: 'DELETE',
+        }).then(response => {
+            this.updateWrestlerForm = {};
+            this.isSelected = false;
+            this.displayWrestler();
+        }, error => {
+            console.log(this.updateWrestlerForm);
+            console.log(error.message);
+        }).catch(err => console.log('Catch', err))
+    }
+
     this.selectWrestler = function (thisWrestler) {
         this.isSelected = true;
         this.updateWrestlerForm = thisWrestler;
